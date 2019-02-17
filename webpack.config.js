@@ -9,7 +9,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // Also generate a test.html
       filename: 'index.html',
       template: 'src/index.html'
     })
@@ -30,9 +29,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
-        options: {
-          // eslint options (if necessary)
-        }
+        options: {}
       }
     ]
   }
