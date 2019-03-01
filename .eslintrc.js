@@ -5,17 +5,20 @@ module.exports = {
 		es6: true,
 		node: true
 	},
-	extends: ['plugin:react/recommended'],
+	extends: ['eslint:recommended', 'plugin:react/recommended'],
+	parser: 'babel-eslint',
 	parserOptions: {
+		ecmaVersion: 6,
+		sourceType: 'module',
 		ecmaFeatures: {
 			jsx: true,
-			modules: true
-		},
-		ecmaVersion: 2018,
-		sourceType: 'module'
+			modules: true,
+			experimentalObjectRestSpread: true
+		}
 	},
 	plugins: ['react'],
 	rules: {
+		'no-console': 'off',
 		indent: ['error', 'tab'],
 		'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single'],
