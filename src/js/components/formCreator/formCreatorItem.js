@@ -10,7 +10,7 @@ class FormItem extends React.Component {
 	}
 
 	componentDidMount() {
-		this.formItem = {};
+		this.formItem = this.props.formItem || {};
 		this.formItem['id'] = this.props.id;
 	}
 
@@ -26,7 +26,11 @@ class FormItem extends React.Component {
 	}
 	render() {
 		return (
-			<form key={this.props.id} onSubmit={this.handleSubmit}>
+			<form
+				key={this.props.id}
+				className="formCreatorItem"
+				onSubmit={this.handleSubmit}
+			>
 				<label>
 					Label:
 					<input
@@ -42,6 +46,15 @@ class FormItem extends React.Component {
 						type="text"
 						name="placeholder"
 						value={this.props.formItem.placeholder}
+						onChange={this.handleChange}
+					/>
+				</label>
+				<label>
+					Help:
+					<input
+						type="text"
+						name="help"
+						value={this.props.formItem.help}
 						onChange={this.handleChange}
 					/>
 				</label>
@@ -65,6 +78,19 @@ class FormItem extends React.Component {
 						<option value="checkbox">Checkbox</option>
 						<option value="text">Input</option>
 						<option value="textarea">Textarea</option>
+					</select>
+				</label>
+				<label>
+					Size:
+					<select
+						name="size"
+						value={this.props.formItem.size}
+						onChange={this.handleChange}
+					>
+						<option value="tiny">Tiny</option>
+						<option value="small">Small</option>
+						<option value="medium">Medium</option>
+						<option value="large">Large</option>
 					</select>
 				</label>
 				<input type="submit" value="Submit" />
