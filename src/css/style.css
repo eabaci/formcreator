@@ -8,6 +8,34 @@ label {
 	text-align: left;
 }
 
-.formViewItem {
-	margin: 60px 0 120px;
+.formCreatorItem {
+	background: #71646429;
+	border: 1px solid gray;
+	margin: 20px;
+	padding: 20px;
+}
+
+.formCreatorItem label input,
+.formCreatorItem label select {
+	float: right;
+}
+
+.form-group {
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+.size-large {
+	width: 100%;
+}
+
+.size-medium {
+	width: 48%;
+}
+
+.size-small {
+	width: 30%;
+}
+
+.size-tiny {
+	width: 20%;
 }

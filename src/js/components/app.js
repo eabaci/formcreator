@@ -7,9 +7,12 @@ import FormData from './formData/formData';
 import FormCreator from './formCreator/formCreator';
 
 class App extends React.Component {
-	state = {
-		formItems: sampleFormItems
-	};
+	constructor() {
+		super();
+		this.state = {
+			formItems: sampleFormItems
+		};
+	}
 
 	changeFormItem = (formItem, index) => {
 		let formItems = this.state.formItems;
@@ -17,28 +20,29 @@ class App extends React.Component {
 		this.setState({ formItems: formItems });
 	};
 	addFormItem = () => {
-		console.log('addFormItem ----------------');
 		let formItems = this.state.formItems;
 		let index = Object.keys(this.state.formItems).length;
 		formItems[`formItem${index}`] = { id: index };
 		this.setState({ formItems: formItems });
 	};
 
+	componentDidMount() {}
+
 	render() {
 		return (
-			<Container>
+			<Container fluid="true">
 				<Row>
-					<Col>
+					<Col xs="3">
 						<FormCreator
 							formItems={this.state.formItems}
 							addFormItem={this.addFormItem}
 							changeFormItem={this.changeFormItem}
 						/>
 					</Col>
-					<Col>
+					<Col xs="6">
 						<FormView formItems={this.state.formItems} />
 					</Col>
-					<Col>
+					<Col xs="3">
 						<FormData formItems={this.state.formItems} />
 					</Col>
 				</Row>
