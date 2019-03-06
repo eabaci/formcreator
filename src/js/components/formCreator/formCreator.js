@@ -15,11 +15,11 @@ class FormCreater extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				{Object.keys(this.props.formItems).map(formItem => (
+				{Object.keys(this.props.formSettings).map(formItem => (
 					<FormCreatorItem
-						key={this.props.formItems[formItem].id}
-						id={this.props.formItems[formItem].id}
-						formItem={this.props.formItems[formItem]}
+						key={this.props.formSettings[formItem].id}
+						id={this.props.formSettings[formItem].id}
+						formItem={this.props.formSettings[formItem]}
 						changeFormItem={this.props.changeFormItem}
 						deleteFormItem={this.props.deleteFormItem}
 					/>
@@ -36,7 +36,7 @@ FormCreater.propTypes = {
 	addFormItem: PropTypes.func,
 	changeFormItem: PropTypes.func,
 	deleteFormItem: PropTypes.func,
-	formItems: PropTypes.object
+	formSettings: PropTypes.object
 };
 
 export default FormCreater;

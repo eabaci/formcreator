@@ -4,23 +4,36 @@ import PropTypes from 'prop-types';
 import FormViewItem from './formViewItem';
 
 class FormView extends React.Component {
+	constructor() {
+		super();
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log('handleSubmit');
+		console.log(this.props.formSettings);
+	}
 	render() {
 		return (
-			<div className="formView">
-				{Object.keys(this.props.formItems).map(formItem => (
+			<form className="formView" onSubmit={this.handleSubmit}>
+				{Object.keys(this.props.formSettings).map(formItem => (
 					<FormViewItem
-						key={this.props.formItems[formItem].id}
-						id={this.props.formItems[formItem].id}
-						formItem={this.props.formItems[formItem]}
+						key={this.props.formSettings[formItem].id}
+						id={this.props.formSettings[formItem].id}
+						formItem={this.props.formSettings[formItem]}
 					/>
 				))}
-			</div>
+				<button type="submit" className="btn btn-primary">
+					Submit
+				</button>
+			</form>
 		);
 	}
 }
 
 FormView.propTypes = {
-	formItems: PropTypes.object
+	formSettings: PropTypes.object
 };
 
 export default FormView;
