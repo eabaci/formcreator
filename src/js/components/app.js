@@ -10,7 +10,8 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			formItems: sampleFormItems
+			formItems: sampleFormItems || {},
+			counter: Object.keys(sampleFormItems).length || 0
 		};
 	}
 
@@ -21,9 +22,10 @@ class App extends React.Component {
 	};
 	addFormItem = () => {
 		let formItems = this.state.formItems;
-		let index = Object.keys(this.state.formItems).length;
+		let index = this.state.counter;
 		formItems[`formItem${index}`] = { id: index };
-		this.setState({ formItems: formItems });
+		index++;
+		this.setState({ formItems: formItems, counter: index });
 	};
 	deleteFormItem = index => {
 		let formItems = this.state.formItems;
