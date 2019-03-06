@@ -6,7 +6,7 @@ import FormViewItem from './formViewItem';
 class FormView extends React.Component {
 	render() {
 		return (
-			<React.Fragment>
+			<div className="formView">
 				{Object.keys(this.props.formItems).map(formItem => (
 					<FormViewItem
 						key={this.props.formItems[formItem].id}
@@ -14,7 +14,7 @@ class FormView extends React.Component {
 						formItem={this.props.formItems[formItem]}
 					/>
 				))}
-			</React.Fragment>
+			</div>
 		);
 	}
 }
