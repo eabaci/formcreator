@@ -1,4 +1,4 @@
-const formItems = {
+const formSettings = {
 	formItem0: {
 		id: 0,
 		name: 'firstName',
@@ -73,4 +73,4 @@ const formItems = {
 	}
 };
 
-export default formItems;
+export default formSettings;

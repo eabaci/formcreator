@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import sampleFormItems from '../sampleFormItems';
+import sampleFormSettings from '../sampleFormSettings';
 import FormView from './formView/formView';
 import FormData from './formData/formData';
 import FormCreator from './formCreator/formCreator';
@@ -10,27 +10,27 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			formItems: sampleFormItems || {},
-			counter: Object.keys(sampleFormItems).length || 0
+			formSettings: sampleFormSettings || {},
+			counter: Object.keys(sampleFormSettings).length || 0
 		};
 	}
 
 	changeFormItem = (formItem, index) => {
-		let formItems = this.state.formItems;
-		formItems[`formItem${index}`] = formItem;
-		this.setState({ formItems: formItems });
+		let formSettings = this.state.formSettings;
+		formSettings[`formItem${index}`] = formItem;
+		this.setState({ formSettings: formSettings });
 	};
 	addFormItem = () => {
-		let formItems = this.state.formItems;
+		let formSettings = this.state.formSettings;
 		let index = this.state.counter;
-		formItems[`formItem${index}`] = { id: index };
+		formSettings[`formItem${index}`] = { id: index };
 		index++;
-		this.setState({ formItems: formItems, counter: index });
+		this.setState({ formSettings: formSettings, counter: index });
 	};
 	deleteFormItem = index => {
-		let formItems = this.state.formItems;
-		delete formItems[`formItem${index}`];
-		this.setState({ formItems: formItems });
+		let formSettings = this.state.formSettings;
+		delete formSettings[`formItem${index}`];
+		this.setState({ formSettings: formSettings });
 	};
 	componentDidMount() {}
 
@@ -40,17 +40,17 @@ class App extends React.Component {
 				<Row>
 					<Col xs="3">
 						<FormCreator
-							formItems={this.state.formItems}
+							formSettings={this.state.formSettings}
 							addFormItem={this.addFormItem}
 							changeFormItem={this.changeFormItem}
 							deleteFormItem={this.deleteFormItem}
 						/>
 					</Col>
 					<Col xs="6">
-						<FormView formItems={this.state.formItems} />
+						<FormView formSettings={this.state.formSettings} />
 					</Col>
 					<Col xs="3">
-						<FormData formItems={this.state.formItems} />
+						<FormData formSettings={this.state.formSettings} />
 					</Col>
 				</Row>
 			</Container>
