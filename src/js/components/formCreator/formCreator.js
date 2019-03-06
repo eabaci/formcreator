@@ -24,7 +24,9 @@ class FormCreater extends React.Component {
 						deleteFormItem={this.props.deleteFormItem}
 					/>
 				))}
-				<button onClick={this.add}>Add Form Item</button>
+				<button className="btn btn-outline-success" onClick={this.add}>
+					Add Form Item
+				</button>
 			</React.Fragment>
 		);
 	}

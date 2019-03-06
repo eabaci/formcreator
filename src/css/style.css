@@ -6,6 +6,14 @@
 	padding: 20px;
 }
 
+.formView {
+	background: #b9f5b9;
+	border: 1px solid green;
+	border-radius: 4px;
+	margin: 20px;
+	padding: 20px;
+}
+
 .size-large {
 	display: inline-block;
 	margin: 0 10px 0 0;
@@ -15,17 +23,17 @@
 .size-medium {
 	display: inline-block;
 	margin: 0 10px 0 0;
-	width: 48%;
+	width: 48.4%;
 }
 
 .size-small {
 	display: inline-block;
 	margin: 0 10px 0 0;
-	width: 30%;
+	width: 29%;
 }
 
 .size-tiny {
 	display: inline-block;
 	margin: 0 10px 0 0;
-	width: 20%;
+	width: 18%;
 }

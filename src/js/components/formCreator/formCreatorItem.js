@@ -118,7 +118,7 @@ class FormItem extends React.Component {
 					</div>
 				</div>
 				<button
-					className="btn btn-outline-primary"
+					className="btn btn-outline-warning"
 					onClick={this.delete}
 				>
 					Delete Form Item
