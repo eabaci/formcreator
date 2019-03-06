@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class FormItem extends React.Component {
+class formSetting extends React.Component {
 	constructor() {
 		super();
 
@@ -11,16 +11,16 @@ class FormItem extends React.Component {
 	}
 
 	componentDidMount() {
-		this.formItem = this.props.formItem || {};
-		this.formItem['id'] = this.props.id;
+		this.formSetting = this.props.formSetting || {};
+		this.formSetting['id'] = this.props.id;
 	}
 
 	handleChange(event) {
 		let name = event.target.name;
 		let value = event.target.value;
-		this.formItem[name] = value;
+		this.formSetting[name] = value;
 
-		this.props.changeFormItem(this.formItem, this.props.id);
+		this.props.changeFormItem(this.formSetting, this.props.id);
 	}
 	handleSubmit(event) {
 		event.preventDefault();
@@ -42,7 +42,7 @@ class FormItem extends React.Component {
 							type="text"
 							className="form-control"
 							name="label"
-							value={this.props.formItem.label}
+							value={this.props.formSetting.label}
 							onChange={this.handleChange}
 						/>
 					</div>
@@ -56,7 +56,7 @@ class FormItem extends React.Component {
 							type="text"
 							className="form-control"
 							name="placeholder"
-							value={this.props.formItem.placeholder}
+							value={this.props.formSetting.placeholder}
 							onChange={this.handleChange}
 						/>
 					</div>
@@ -68,7 +68,7 @@ class FormItem extends React.Component {
 							type="text"
 							className="form-control"
 							name="help"
-							value={this.props.formItem.help}
+							value={this.props.formSetting.help}
 							onChange={this.handleChange}
 						/>
 					</div>
@@ -80,7 +80,7 @@ class FormItem extends React.Component {
 							type="text"
 							className="form-control"
 							name="name"
-							value={this.props.formItem.name}
+							value={this.props.formSetting.name}
 							onChange={this.handleChange}
 						/>
 					</div>
@@ -91,7 +91,7 @@ class FormItem extends React.Component {
 						<select
 							name="type"
 							className="form-control"
-							value={this.props.formItem.type}
+							value={this.props.formSetting.type}
 							onChange={this.handleChange}
 						>
 							<option value="radio">Radio</option>
@@ -107,7 +107,7 @@ class FormItem extends React.Component {
 						<select
 							name="size"
 							className="form-control"
-							value={this.props.formItem.size}
+							value={this.props.formSetting.size}
 							onChange={this.handleChange}
 						>
 							<option value="tiny">Tiny</option>
@@ -128,12 +128,12 @@ class FormItem extends React.Component {
 	}
 }
 
-FormItem.propTypes = {
+formSetting.propTypes = {
 	addFormItem: PropTypes.func,
 	changeFormItem: PropTypes.func,
 	deleteFormItem: PropTypes.func,
-	formItem: PropTypes.object,
+	formSetting: PropTypes.object,
 	id: PropTypes.number
 };
 
-export default FormItem;
+export default formSetting;

@@ -1,5 +1,5 @@
 const formSettings = {
-	formItem0: {
+	formSetting0: {
 		id: 0,
 		name: 'firstName',
 		label: 'First Name',
@@ -8,7 +8,7 @@ const formSettings = {
 		type: 'text',
 		size: 'medium'
 	},
-	formItem1: {
+	formSetting1: {
 		id: 1,
 		name: 'lastName',
 		label: 'Last Name',
@@ -17,7 +17,7 @@ const formSettings = {
 		type: 'text',
 		size: 'medium'
 	},
-	formItem2: {
+	formSetting2: {
 		id: 2,
 		name: 'email',
 		label: 'E-Mail',
@@ -26,7 +26,7 @@ const formSettings = {
 		type: 'text',
 		size: 'large'
 	},
-	formItem3: {
+	formSetting3: {
 		id: 3,
 		name: 'street',
 		label: 'Street',
@@ -35,7 +35,7 @@ const formSettings = {
 		type: 'text',
 		size: 'medium'
 	},
-	formItem4: {
+	formSetting4: {
 		id: 4,
 		name: 'postalcode',
 		label: 'Postal code',
@@ -44,7 +44,7 @@ const formSettings = {
 		type: 'text',
 		size: 'tiny'
 	},
-	formItem5: {
+	formSetting5: {
 		id: 5,
 		name: 'city',
 		label: 'City',
@@ -53,7 +53,7 @@ const formSettings = {
 		type: 'text',
 		size: 'small'
 	},
-	formItem6: {
+	formSetting6: {
 		id: 6,
 		name: 'iban',
 		label: 'IBAN',
@@ -62,7 +62,7 @@ const formSettings = {
 		type: 'text',
 		size: 'medium'
 	},
-	formItem7: {
+	formSetting7: {
 		id: 7,
 		name: 'bic',
 		label: 'BIC',

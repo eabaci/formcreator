@@ -17,11 +17,11 @@ class FormView extends React.Component {
 	render() {
 		return (
 			<form className="formView" onSubmit={this.handleSubmit}>
-				{Object.keys(this.props.formSettings).map(formItem => (
+				{Object.keys(this.props.formSettings).map(formSetting => (
 					<FormViewItem
-						key={this.props.formSettings[formItem].id}
-						id={this.props.formSettings[formItem].id}
-						formItem={this.props.formSettings[formItem]}
+						key={this.props.formSettings[formSetting].id}
+						id={this.props.formSettings[formSetting].id}
+						formSetting={this.props.formSettings[formSetting]}
 					/>
 				))}
 				<button type="submit" className="btn btn-primary">

@@ -11,25 +11,26 @@ class App extends React.Component {
 		super();
 		this.state = {
 			formSettings: sampleFormSettings || {},
-			counter: Object.keys(sampleFormSettings).length || 0
+			counter: Object.keys(sampleFormSettings).length || 0,
+			formData: {}
 		};
 	}
 
-	changeFormItem = (formItem, index) => {
+	changeFormItem = (formSetting, index) => {
 		let formSettings = this.state.formSettings;
-		formSettings[`formItem${index}`] = formItem;
+		formSettings[`formSetting${index}`] = formSetting;
 		this.setState({ formSettings: formSettings });
 	};
 	addFormItem = () => {
 		let formSettings = this.state.formSettings;
 		let index = this.state.counter;
-		formSettings[`formItem${index}`] = { id: index };
+		formSettings[`formSetting${index}`] = { id: index };
 		index++;
 		this.setState({ formSettings: formSettings, counter: index });
 	};
 	deleteFormItem = index => {
 		let formSettings = this.state.formSettings;
-		delete formSettings[`formItem${index}`];
+		delete formSettings[`formSetting${index}`];
 		this.setState({ formSettings: formSettings });
 	};
 	componentDidMount() {}
