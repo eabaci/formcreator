@@ -25,7 +25,11 @@ class App extends React.Component {
 		formItems[`formItem${index}`] = { id: index };
 		this.setState({ formItems: formItems });
 	};
-
+	deleteFormItem = index => {
+		let formItems = this.state.formItems;
+		delete formItems[`formItem${index}`];
+		this.setState({ formItems: formItems });
+	};
 	componentDidMount() {}
 
 	render() {
@@ -37,6 +41,7 @@ class App extends React.Component {
 							formItems={this.state.formItems}
 							addFormItem={this.addFormItem}
 							changeFormItem={this.changeFormItem}
+							deleteFormItem={this.deleteFormItem}
 						/>
 					</Col>
 					<Col xs="6">

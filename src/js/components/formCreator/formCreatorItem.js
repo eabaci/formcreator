@@ -7,6 +7,7 @@ class FormItem extends React.Component {
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.delete = this.delete.bind(this);
 	}
 
 	componentDidMount() {
@@ -24,6 +25,9 @@ class FormItem extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault();
 	}
+	delete() {
+		this.props.deleteFormItem(this.props.id);
+	}
 	render() {
 		return (
 			<form
@@ -31,69 +35,94 @@ class FormItem extends React.Component {
 				className="formCreatorItem"
 				onSubmit={this.handleSubmit}
 			>
-				<label>
-					Label:
-					<input
-						type="text"
-						name="label"
-						value={this.props.formItem.label}
-						onChange={this.handleChange}
-					/>
-				</label>
-				<label>
-					Placeholder:
-					<input
-						type="text"
-						name="placeholder"
-						value={this.props.formItem.placeholder}
-						onChange={this.handleChange}
-					/>
-				</label>
-				<label>
-					Help:
-					<input
-						type="text"
-						name="help"
-						value={this.props.formItem.help}
-						onChange={this.handleChange}
-					/>
-				</label>
-				<label>
-					Name:
-					<input
-						type="text"
-						name="name"
-						value={this.props.formItem.name}
-						onChange={this.handleChange}
-					/>
-				</label>
-				<label>
-					Type:
-					<select
-						name="type"
-						value={this.props.formItem.type}
-						onChange={this.handleChange}
-					>
-						<option value="radio">Radio</option>
-						<option value="checkbox">Checkbox</option>
-						<option value="text">Input</option>
-						<option value="textarea">Textarea</option>
-					</select>
-				</label>
-				<label>
-					Size:
-					<select
-						name="size"
-						value={this.props.formItem.size}
-						onChange={this.handleChange}
-					>
-						<option value="tiny">Tiny</option>
-						<option value="small">Small</option>
-						<option value="medium">Medium</option>
-						<option value="large">Large</option>
-					</select>
-				</label>
-				<input type="submit" value="Submit" />
+				<div className="form-group row">
+					<label className="col-sm-4 col-form-label">Label:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="label"
+							value={this.props.formItem.label}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row">
+					<label className="col-sm-4 col-form-label">
+						Placeholder:
+					</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="placeholder"
+							value={this.props.formItem.placeholder}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row">
+					<label className="col-sm-4 col-form-label">Help:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="help"
+							value={this.props.formItem.help}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row">
+					<label className="col-sm-4 col-form-label">Name:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="name"
+							value={this.props.formItem.name}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row">
+					<label className="col-sm-4 col-form-label">Type:</label>
+					<div className="col-sm-8">
+						<select
+							name="type"
+							className="form-control"
+							value={this.props.formItem.type}
+							onChange={this.handleChange}
+						>
+							<option value="radio">Radio</option>
+							<option value="checkbox">Checkbox</option>
+							<option value="text">Input</option>
+							<option value="textarea">Textarea</option>
+						</select>
+					</div>
+				</div>
+				<div className="form-group row">
+					<label className="col-sm-4 col-form-label">Size:</label>
+					<div className="col-sm-8">
+						<select
+							name="size"
+							className="form-control"
+							value={this.props.formItem.size}
+							onChange={this.handleChange}
+						>
+							<option value="tiny">Tiny</option>
+							<option value="small">Small</option>
+							<option value="medium">Medium</option>
+							<option value="large">Large</option>
+						</select>
+					</div>
+				</div>
+				<button
+					className="btn btn-outline-primary"
+					onClick={this.delete}
+				>
+					Delete Form Item
+				</button>
 			</form>
 		);
 	}
@@ -102,6 +131,7 @@ class FormItem extends React.Component {
 FormItem.propTypes = {
 	addFormItem: PropTypes.func,
 	changeFormItem: PropTypes.func,
+	deleteFormItem: PropTypes.func,
 	formItem: PropTypes.object,
 	id: PropTypes.number
 };

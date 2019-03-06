@@ -1,41 +1,31 @@
-.col {
-	border: 2px solid red;
-	text-align: center;
-}
-
-label {
-	display: block;
-	text-align: left;
-}
-
 .formCreatorItem {
-	background: #71646429;
+	background: #71646417;
 	border: 1px solid gray;
+	border-radius: 4px;
 	margin: 20px;
 	padding: 20px;
 }
 
-.formCreatorItem label input,
-.formCreatorItem label select {
-	float: right;
-}
-
-.form-group {
+.size-large {
 	display: inline-block;
 	margin: 0 10px 0 0;
-}
-.size-large {
-	width: 100%;
+	width: 98%;
 }
 
 .size-medium {
+	display: inline-block;
+	margin: 0 10px 0 0;
 	width: 48%;
 }
 
 .size-small {
+	display: inline-block;
+	margin: 0 10px 0 0;
 	width: 30%;
 }
 
 .size-tiny {
+	display: inline-block;
+	margin: 0 10px 0 0;
 	width: 20%;
 }
