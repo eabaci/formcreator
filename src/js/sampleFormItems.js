@@ -1,21 +1,21 @@
 const formItems = {
 	formItem0: {
 		id: 0,
-		name: 'Name',
-		label: 'Label',
-		placeholder: 'Placeholder',
-		help: 'Help',
+		name: 'firstName',
+		label: 'First Name',
+		placeholder: '',
+		help: '',
 		type: 'text',
-		size: 'large'
+		size: 'medium'
 	},
 	formItem1: {
 		id: 1,
-		name: 'Name',
-		label: 'Label',
-		placeholder: 'Placeholder',
-		help: 'Help',
-		type: 'checkbox',
-		size: 'large'
+		name: 'lastName',
+		label: 'Last Name',
+		placeholder: '',
+		help: '',
+		type: 'text',
+		size: 'medium'
 	},
 	formItem2: {
 		id: 2,

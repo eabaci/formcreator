@@ -21,6 +21,7 @@ class FormCreater extends React.Component {
 						id={this.props.formItems[formItem].id}
 						formItem={this.props.formItems[formItem]}
 						changeFormItem={this.props.changeFormItem}
+						deleteFormItem={this.props.deleteFormItem}
 					/>
 				))}
 				<button onClick={this.add}>Add Form Item</button>
@@ -32,6 +33,7 @@ class FormCreater extends React.Component {
 FormCreater.propTypes = {
 	addFormItem: PropTypes.func,
 	changeFormItem: PropTypes.func,
+	deleteFormItem: PropTypes.func,
 	formItems: PropTypes.object
 };
 
