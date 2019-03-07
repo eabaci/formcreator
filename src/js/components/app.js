@@ -12,27 +12,42 @@ class App extends React.Component {
 		this.state = {
 			formSettings: sampleFormSettings || {},
 			counter: Object.keys(sampleFormSettings).length || 0,
-			formData: {}
+			formDatas: {}
 		};
+
+		this.saveFormData = this.saveFormData.bind(this);
 	}
 
-	changeFormItem = (formSetting, index) => {
+	changeFormSetting = (formSetting, index) => {
 		let formSettings = this.state.formSettings;
 		formSettings[`formSetting${index}`] = formSetting;
 		this.setState({ formSettings: formSettings });
 	};
-	addFormItem = () => {
+	addFormSetting = name => {
 		let formSettings = this.state.formSettings;
 		let index = this.state.counter;
-		formSettings[`formSetting${index}`] = { id: index };
+		formSettings[`formSetting${index}`] = {
+			id: index,
+			label: '',
+			placeholder: '',
+			help: '',
+			size: 'large',
+			type: 'text',
+			name: name
+		};
 		index++;
 		this.setState({ formSettings: formSettings, counter: index });
 	};
-	deleteFormItem = index => {
+	deleteFormSetting = index => {
 		let formSettings = this.state.formSettings;
 		delete formSettings[`formSetting${index}`];
 		this.setState({ formSettings: formSettings });
 	};
+	saveFormData(value, name) {
+		let formDatas = this.state.formDatas;
+		formDatas[`${name}`] = value;
+		this.setState({ formDatas: formDatas });
+	}
 	componentDidMount() {}
 
 	render() {
@@ -42,13 +57,18 @@ class App extends React.Component {
 					<Col xs="3">
 						<FormCreator
 							formSettings={this.state.formSettings}
-							addFormItem={this.addFormItem}
-							changeFormItem={this.changeFormItem}
-							deleteFormItem={this.deleteFormItem}
+							addFormSetting={this.addFormSetting}
+							changeFormSetting={this.changeFormSetting}
+							deleteFormSetting={this.deleteFormSetting}
 						/>
 					</Col>
 					<Col xs="6">
-						<FormView formSettings={this.state.formSettings} />
+						<h1 className="headline">Formular Creator</h1>
+						<FormView
+							formSettings={this.state.formSettings}
+							formDatas={this.state.formDatas}
+							saveFormData={this.saveFormData}
+						/>
 					</Col>
 					<Col xs="3">
 						<FormData formSettings={this.state.formSettings} />

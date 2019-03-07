@@ -70,6 +70,30 @@ const formSettings = {
 		help: '',
 		type: 'text',
 		size: 'medium'
+	},
+	formSetting8: {
+		id: 8,
+		name: 'question1',
+		label: 'Wie findest du React?',
+		placeholder: '',
+		help: '',
+		type: 'radio',
+		option1: 'sehr gut',
+		option2: 'gut',
+		option3: 'nicht so gut',
+		size: 'medium'
+	},
+	formSetting9: {
+		id: 9,
+		name: 'question2',
+		label: 'Was isst du gerne zum Mittag?',
+		placeholder: '',
+		help: '',
+		type: 'checkbox',
+		option1: 'Pizza',
+		option2: 'Spagetti',
+		option3: 'Salat',
+		size: 'medium'
 	}
 };
 

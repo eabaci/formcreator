@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import PropTypes from 'prop-types';
 
 class formSetting extends React.Component {
@@ -8,6 +9,12 @@ class formSetting extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.delete = this.delete.bind(this);
+
+		this.placeholderRef = React.createRef();
+		this.helpRef = React.createRef();
+		this.option1Ref = React.createRef();
+		this.option2Ref = React.createRef();
+		this.option3Ref = React.createRef();
 	}
 
 	componentDidMount() {
@@ -20,14 +27,39 @@ class formSetting extends React.Component {
 		let value = event.target.value;
 		this.formSetting[name] = value;
 
-		this.props.changeFormItem(this.formSetting, this.props.id);
+		this.props.changeFormSetting(this.formSetting, this.props.id);
+		if (name == 'type') this.handleTypeChange(value);
 	}
+
+	handleTypeChange(type) {
+		const node1 = this.option1Ref.current;
+		const node2 = this.option2Ref.current;
+		const node3 = this.option3Ref.current;
+		const node4 = this.placeholderRef.current;
+		const node5 = this.helpRef.current;
+		if (type === 'radio' || type === 'checkbox') {
+			$(node1).removeClass('invisible');
+			$(node2).removeClass('invisible');
+			$(node3).removeClass('invisible');
+			$(node4).addClass('invisible');
+			$(node5).addClass('invisible');
+		} else {
+			$(node1).addClass('invisible');
+			$(node2).addClass('invisible');
+			$(node3).addClass('invisible');
+			$(node4).removeClass('invisible');
+			$(node5).removeClass('invisible');
+		}
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 	}
+
 	delete() {
-		this.props.deleteFormItem(this.props.id);
+		this.props.deleteFormSetting(this.props.id);
 	}
+
 	render() {
 		return (
 			<form
@@ -47,7 +79,7 @@ class formSetting extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="form-group row">
+				<div className="form-group row" ref={this.placeholderRef}>
 					<label className="col-sm-4 col-form-label">
 						Placeholder:
 					</label>
@@ -61,7 +93,7 @@ class formSetting extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="form-group row">
+				<div className="form-group row" ref={this.helpRef}>
 					<label className="col-sm-4 col-form-label">Help:</label>
 					<div className="col-sm-8">
 						<input
@@ -69,18 +101,6 @@ class formSetting extends React.Component {
 							className="form-control"
 							name="help"
 							value={this.props.formSetting.help}
-							onChange={this.handleChange}
-						/>
-					</div>
-				</div>
-				<div className="form-group row">
-					<label className="col-sm-4 col-form-label">Name:</label>
-					<div className="col-sm-8">
-						<input
-							type="text"
-							className="form-control"
-							name="name"
-							value={this.props.formSetting.name}
 							onChange={this.handleChange}
 						/>
 					</div>
@@ -99,6 +119,42 @@ class formSetting extends React.Component {
 							<option value="text">Input</option>
 							<option value="textarea">Textarea</option>
 						</select>
+					</div>
+				</div>
+				<div className="form-group row invisible" ref={this.option1Ref}>
+					<label className="col-sm-4 col-form-label">Option 1:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="option1"
+							value={this.props.formSetting.option1}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row invisible" ref={this.option2Ref}>
+					<label className="col-sm-4 col-form-label">Option 2:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="option2"
+							value={this.props.formSetting.option2}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row invisible" ref={this.option3Ref}>
+					<label className="col-sm-4 col-form-label">Option 3:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="option3"
+							value={this.props.formSetting.option3}
+							onChange={this.handleChange}
+						/>
 					</div>
 				</div>
 				<div className="form-group row">
@@ -129,9 +185,9 @@ class formSetting extends React.Component {
 }
 
 formSetting.propTypes = {
-	addFormItem: PropTypes.func,
-	changeFormItem: PropTypes.func,
-	deleteFormItem: PropTypes.func,
+	addFormSetting: PropTypes.func,
+	changeFormSetting: PropTypes.func,
+	deleteFormSetting: PropTypes.func,
 	formSetting: PropTypes.object,
 	id: PropTypes.number
 };
