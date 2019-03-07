@@ -20,6 +20,8 @@ class formSetting extends React.Component {
 	componentDidMount() {
 		this.formSetting = this.props.formSetting || {};
 		this.formSetting['id'] = this.props.id;
+
+		this.handleTypeChange(this.formSetting.type);
 	}
 
 	handleChange(event) {
@@ -37,7 +39,7 @@ class formSetting extends React.Component {
 		const node3 = this.option3Ref.current;
 		const node4 = this.placeholderRef.current;
 		const node5 = this.helpRef.current;
-		if (type === 'radio' || type === 'checkbox') {
+		if (type === 'radio' || type === 'checkbox' || type === 'select') {
 			$(node1).removeClass('invisible');
 			$(node2).removeClass('invisible');
 			$(node3).removeClass('invisible');
@@ -118,6 +120,7 @@ class formSetting extends React.Component {
 							<option value="checkbox">Checkbox</option>
 							<option value="text">Input</option>
 							<option value="textarea">Textarea</option>
+							<option value="select">Select</option>
 						</select>
 					</div>
 				</div>
