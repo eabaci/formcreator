@@ -1,17 +1,27 @@
 .formCreatorItem {
-	background: #71646417;
+	background: #f2f1f1;
 	border: 1px solid gray;
 	border-radius: 4px;
 	margin: 20px;
 	padding: 20px;
 }
 
+.headline {
+	margin-top: 20px;
+	text-align: center;
+}
+
 .formView {
-	background: #b9f5b9;
+	background: #def5b9;
 	border: 1px solid green;
 	border-radius: 4px;
 	margin: 20px;
 	padding: 20px;
+}
+
+.formView .buttonContainer {
+	margin-top: 20px;
+	text-align: center;
 }
 
 .size-large {
@@ -36,4 +46,18 @@
 	display: inline-block;
 	margin: 0 10px 0 0;
 	width: 18%;
+}
+
+.formDataView {
+	border-radius: 4px;
+	margin: 20px;
+	background: #f2f1f1;
+}
+
+.invisible {
+	display: none;
+}
+
+.form-check-inline-label {
+	display: block;
 }

@@ -1,33 +1,65 @@
 import React from 'react';
+import $ from 'jquery';
 import PropTypes from 'prop-types';
 
-class FormItem extends React.Component {
+class formSetting extends React.Component {
 	constructor() {
 		super();
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.delete = this.delete.bind(this);
+
+		this.placeholderRef = React.createRef();
+		this.helpRef = React.createRef();
+		this.option1Ref = React.createRef();
+		this.option2Ref = React.createRef();
+		this.option3Ref = React.createRef();
 	}
 
 	componentDidMount() {
-		this.formItem = this.props.formItem || {};
-		this.formItem['id'] = this.props.id;
+		this.formSetting = this.props.formSetting || {};
+		this.formSetting['id'] = this.props.id;
 	}
 
 	handleChange(event) {
 		let name = event.target.name;
 		let value = event.target.value;
-		this.formItem[name] = value;
+		this.formSetting[name] = value;
 
-		this.props.changeFormItem(this.formItem, this.props.id);
+		this.props.changeFormSetting(this.formSetting, this.props.id);
+		if (name == 'type') this.handleTypeChange(value);
 	}
+
+	handleTypeChange(type) {
+		const node1 = this.option1Ref.current;
+		const node2 = this.option2Ref.current;
+		const node3 = this.option3Ref.current;
+		const node4 = this.placeholderRef.current;
+		const node5 = this.helpRef.current;
+		if (type === 'radio' || type === 'checkbox') {
+			$(node1).removeClass('invisible');
+			$(node2).removeClass('invisible');
+			$(node3).removeClass('invisible');
+			$(node4).addClass('invisible');
+			$(node5).addClass('invisible');
+		} else {
+			$(node1).addClass('invisible');
+			$(node2).addClass('invisible');
+			$(node3).addClass('invisible');
+			$(node4).removeClass('invisible');
+			$(node5).removeClass('invisible');
+		}
+	}
+
 	handleSubmit(event) {
 		event.preventDefault();
 	}
+
 	delete() {
-		this.props.deleteFormItem(this.props.id);
+		this.props.deleteFormSetting(this.props.id);
 	}
+
 	render() {
 		return (
 			<form
@@ -42,12 +74,12 @@ class FormItem extends React.Component {
 							type="text"
 							className="form-control"
 							name="label"
-							value={this.props.formItem.label}
+							value={this.props.formSetting.label}
 							onChange={this.handleChange}
 						/>
 					</div>
 				</div>
-				<div className="form-group row">
+				<div className="form-group row" ref={this.placeholderRef}>
 					<label className="col-sm-4 col-form-label">
 						Placeholder:
 					</label>
@@ -56,31 +88,19 @@ class FormItem extends React.Component {
 							type="text"
 							className="form-control"
 							name="placeholder"
-							value={this.props.formItem.placeholder}
+							value={this.props.formSetting.placeholder}
 							onChange={this.handleChange}
 						/>
 					</div>
 				</div>
-				<div className="form-group row">
+				<div className="form-group row" ref={this.helpRef}>
 					<label className="col-sm-4 col-form-label">Help:</label>
 					<div className="col-sm-8">
 						<input
 							type="text"
 							className="form-control"
 							name="help"
-							value={this.props.formItem.help}
-							onChange={this.handleChange}
-						/>
-					</div>
-				</div>
-				<div className="form-group row">
-					<label className="col-sm-4 col-form-label">Name:</label>
-					<div className="col-sm-8">
-						<input
-							type="text"
-							className="form-control"
-							name="name"
-							value={this.props.formItem.name}
+							value={this.props.formSetting.help}
 							onChange={this.handleChange}
 						/>
 					</div>
@@ -91,7 +111,7 @@ class FormItem extends React.Component {
 						<select
 							name="type"
 							className="form-control"
-							value={this.props.formItem.type}
+							value={this.props.formSetting.type}
 							onChange={this.handleChange}
 						>
 							<option value="radio">Radio</option>
@@ -101,13 +121,49 @@ class FormItem extends React.Component {
 						</select>
 					</div>
 				</div>
+				<div className="form-group row invisible" ref={this.option1Ref}>
+					<label className="col-sm-4 col-form-label">Option 1:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="option1"
+							value={this.props.formSetting.option1}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row invisible" ref={this.option2Ref}>
+					<label className="col-sm-4 col-form-label">Option 2:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="option2"
+							value={this.props.formSetting.option2}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
+				<div className="form-group row invisible" ref={this.option3Ref}>
+					<label className="col-sm-4 col-form-label">Option 3:</label>
+					<div className="col-sm-8">
+						<input
+							type="text"
+							className="form-control"
+							name="option3"
+							value={this.props.formSetting.option3}
+							onChange={this.handleChange}
+						/>
+					</div>
+				</div>
 				<div className="form-group row">
 					<label className="col-sm-4 col-form-label">Size:</label>
 					<div className="col-sm-8">
 						<select
 							name="size"
 							className="form-control"
-							value={this.props.formItem.size}
+							value={this.props.formSetting.size}
 							onChange={this.handleChange}
 						>
 							<option value="tiny">Tiny</option>
@@ -128,12 +184,12 @@ class FormItem extends React.Component {
 	}
 }
 
-FormItem.propTypes = {
-	addFormItem: PropTypes.func,
-	changeFormItem: PropTypes.func,
-	deleteFormItem: PropTypes.func,
-	formItem: PropTypes.object,
+formSetting.propTypes = {
+	addFormSetting: PropTypes.func,
+	changeFormSetting: PropTypes.func,
+	deleteFormSetting: PropTypes.func,
+	formSetting: PropTypes.object,
 	id: PropTypes.number
 };
 
-export default FormItem;
+export default formSetting;

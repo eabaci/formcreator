@@ -8,14 +8,15 @@ class FormDataItem extends React.Component {
 				disabled
 				rows="10"
 				cols="40"
-				value={JSON.stringify(this.props.formItem, null, '\t')}
+				className="formDataView"
+				value={JSON.stringify(this.props.formSetting, null, '\t')}
 			/>
 		);
 	}
 }
 
 FormDataItem.propTypes = {
-	formItem: PropsType.object
+	formSetting: PropsType.object
 };
 
 export default FormDataItem;
