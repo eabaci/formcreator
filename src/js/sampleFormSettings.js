@@ -94,6 +94,18 @@ const formSettings = {
 		option2: 'Spagetti',
 		option3: 'Salat',
 		size: 'medium'
+	},
+	formSetting10: {
+		id: 10,
+		name: 'question3',
+		label: 'Was isst du gerne zum Mittag?',
+		placeholder: '',
+		help: '',
+		type: 'select',
+		option1: 'Pizza',
+		option2: 'Spagetti',
+		option3: 'Salat',
+		size: 'large'
 	}
 };
 
