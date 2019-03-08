@@ -92,17 +92,13 @@ class formSetting extends React.Component {
 			large: 'Large'
 		};
 		return (
-			<React.Fragment>
-				<div
-					className="formCreatorItemLabel invisible"
-					ref={this.labelRef}
-					onClick={this.toggleItem}
-				>
-					<h1>{this.props.formSetting.name}</h1>
-				</div>
+			<div className="form-wrapper">
+				<h2 ref={this.labelRef} onClick={this.toggleItem}>
+					{this.props.formSetting.name}
+				</h2>
 				<form
 					key={this.props.id}
-					className="formCreatorItem"
+					className="invisible"
 					onSubmit={this.handleSubmit}
 					ref={this.formRef}
 				>
@@ -174,7 +170,7 @@ class formSetting extends React.Component {
 						Close Item
 					</button>
 				</form>
-			</React.Fragment>
+			</div>
 		);
 	}
 }

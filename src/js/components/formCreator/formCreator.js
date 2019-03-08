@@ -28,7 +28,7 @@ class FormCreater extends React.Component {
 						deleteFormSetting={this.props.deleteFormSetting}
 					/>
 				))}
-				<div className="formCreatorItem">
+				<div className="form-wrapper">
 					<div className="form-group row">
 						<label className="col-sm-4 col-form-label">Name:</label>
 						<div className="col-sm-8">
