@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import FormCreatorItem from './formCreatorItem';
@@ -11,9 +12,25 @@ class FormCreater extends React.Component {
 		this.inputRef = React.createRef();
 	}
 
+	validation(name) {
+		if (name) {
+			let elem = _.findKey(this.props.formSettings, function(fs) {
+				return fs.name == name;
+			});
+			if (!elem) return true;
+			else
+				console.log(
+					'Validation Error: The Name of the Form Item already exist. Please add a new Name!'
+				);
+		} else
+			console.log(
+				'Validation Error: The Name of the Form Item can not be empty. Please add a Name!'
+			);
+	}
+
 	add() {
 		let name = this.inputRef.current.value;
-		this.props.addFormSetting(name);
+		if (this.validation(name)) this.props.addFormSetting(name);
 	}
 
 	render() {
