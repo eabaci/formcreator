@@ -30,9 +30,9 @@ class TextAreaItem extends React.Component {
 	}
 
 	render() {
-		let containerCN = `form-group size-${this.props.formSetting.size}`;
+		let className = `form-group size-${this.props.formSetting.size}`;
 		return (
-			<div key={this.props.id} className={containerCN}>
+			<div key={this.props.id} className={className}>
 				<label>{this.props.formSetting.label}</label>
 				<textarea
 					className="form-control"
