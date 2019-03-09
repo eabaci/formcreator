@@ -35,7 +35,7 @@ class InputCreatorItem extends React.Component {
 						type="text"
 						className="form-control"
 						name={this.props.name}
-						value={this.props.value}
+						value={this.props.value || ''}
 						onChange={this.handleChange}
 					/>
 				</div>

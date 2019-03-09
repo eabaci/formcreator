@@ -17,6 +17,7 @@ class formSetting extends React.Component {
 		this.formRef = React.createRef();
 		this.placeholderRef = React.createRef();
 		this.helpRef = React.createRef();
+		this.regExpRef = React.createRef();
 		this.option1Ref = React.createRef();
 		this.option2Ref = React.createRef();
 		this.option3Ref = React.createRef();
@@ -32,7 +33,7 @@ class formSetting extends React.Component {
 	handleChange(name, value) {
 		this.formSetting[name] = value;
 
-		this.props.changeFormSetting(this.formSetting, this.props.id);
+		this.props.changeFormSetting(this.formSetting, this.props.id, name);
 		if (name == 'type') this.handleTypeChange(value);
 	}
 
@@ -42,18 +43,21 @@ class formSetting extends React.Component {
 		const node3 = this.option3Ref.current;
 		const node4 = this.placeholderRef.current;
 		const node5 = this.helpRef.current;
+		const node6 = this.regExpRef.current;
 		if (type === 'radio' || type === 'checkbox' || type === 'select') {
 			node1.hide();
 			node2.hide();
 			node3.hide();
 			node4.show();
 			node5.show();
+			node6.show();
 		} else {
 			node1.show();
 			node2.show();
 			node3.show();
 			node4.hide();
 			node5.hide();
+			node6.hide();
 		}
 	}
 
@@ -91,6 +95,8 @@ class formSetting extends React.Component {
 			medium: 'Medium',
 			large: 'Large'
 		};
+		let regExp = this.props.formSetting.regExp;
+		let regExpString = regExp ? regExp.toString() : '';
 		return (
 			<div className="form-wrapper">
 				<h2 ref={this.labelRef} onClick={this.toggleItem}>
@@ -121,6 +127,13 @@ class formSetting extends React.Component {
 						label={'Help:'}
 						onChange={this.handleChange}
 						ref={this.helpRef}
+					/>
+					<InputCreatorItem
+						name={'regExp'}
+						value={regExpString}
+						label={'RegExp:'}
+						onChange={this.handleChange}
+						ref={this.regExpRef}
 					/>
 					<SelectCreatorItem
 						label={'Type:'}
@@ -160,6 +173,7 @@ class formSetting extends React.Component {
 					<button
 						className="btn btn-outline-warning"
 						onClick={this.delete}
+						type="button"
 					>
 						Delete Item
 					</button>

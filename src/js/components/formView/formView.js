@@ -4,29 +4,45 @@ import PropTypes from 'prop-types';
 import FormViewItem from './formViewItem';
 
 class FormView extends React.Component {
-	constructor() {
-		super();
-
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-	handleSubmit(event) {
+	handleSubmit = event => {
 		event.preventDefault();
-		console.log('formDatas: ');
-		console.log(this.props.formDatas);
-	}
+		this.props.saveFormData(this.props.formDatas);
+	};
+
+	validation = index => {
+		let self = this;
+
+		if (index) {
+			self.refs[index].current.validation();
+		} else {
+			for (let ref of self.refs) ref.current.validation();
+		}
+	};
+
 	render() {
+		let self = this;
+		self.refs = [];
 		return (
-			<form className="formView" onSubmit={this.handleSubmit}>
-				{Object.keys(this.props.formSettings).map(formSetting => (
-					<FormViewItem
-						key={this.props.formSettings[formSetting].id}
-						id={this.props.formSettings[formSetting].id}
-						formSetting={this.props.formSettings[formSetting]}
-						saveFormData={this.props.saveFormData}
-					/>
-				))}
+			<form className="formView" ref={this.test}>
+				{Object.keys(this.props.formSettings).map(formSetting => {
+					let ref = React.createRef();
+					self.refs.push(ref);
+					return (
+						<FormViewItem
+							key={this.props.formSettings[formSetting].id}
+							id={this.props.formSettings[formSetting].id}
+							formSetting={this.props.formSettings[formSetting]}
+							formDatas={this.props.formDatas}
+							ref={ref}
+						/>
+					);
+				})}
 				<div className="buttonContainer">
-					<button type="submit" className="btn btn-outline-primary">
+					<button
+						type="submit"
+						onClick={this.handleSubmit}
+						className="btn btn-outline-primary"
+					>
 						Submit
 					</button>
 				</div>

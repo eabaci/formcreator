@@ -15,22 +15,21 @@ class App extends React.Component {
 			formDatas: {}
 		};
 
-		this.saveFormData = this.saveFormData.bind(this);
+		this.formViewRef = React.createRef();
 	}
 
-	changeFormSetting = (formSetting, index) => {
+	changeFormSetting = (formSetting, index, name) => {
 		let formSettings = this.state.formSettings;
 		formSettings[`formSetting${index}`] = formSetting;
 		this.setState({ formSettings: formSettings });
+		if (name == 'regExp') this.formViewRef.current.validation(index);
 	};
+
 	addFormSetting = name => {
 		let formSettings = this.state.formSettings;
 		let index = this.state.counter;
 		formSettings[`formSetting${index}`] = {
 			id: index,
-			label: '',
-			placeholder: '',
-			help: '',
 			size: 'large',
 			type: 'text',
 			name: name
@@ -38,17 +37,17 @@ class App extends React.Component {
 		index++;
 		this.setState({ formSettings: formSettings, counter: index });
 	};
+
 	deleteFormSetting = index => {
 		let formSettings = this.state.formSettings;
 		delete formSettings[`formSetting${index}`];
 		this.setState({ formSettings: formSettings });
 	};
-	saveFormData(value, name) {
-		let formDatas = this.state.formDatas;
-		formDatas[`${name}`] = value;
+
+	saveFormData = formDatas => {
 		this.setState({ formDatas: formDatas });
-	}
-	componentDidMount() {}
+		this.formViewRef.current.validation();
+	};
 
 	render() {
 		return (
@@ -68,6 +67,7 @@ class App extends React.Component {
 							formSettings={this.state.formSettings}
 							formDatas={this.state.formDatas}
 							saveFormData={this.saveFormData}
+							ref={this.formViewRef}
 						/>
 					</Col>
 					<Col xs="3">

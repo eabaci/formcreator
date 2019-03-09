@@ -7,13 +7,20 @@ import SelectItem from './selectItem';
 import InputItem from './inputItem';
 
 class FormViewItem extends React.Component {
+	ref = React.createRef();
+
+	validation() {
+		this.ref.current.validation();
+	}
+
 	formatInputField(type) {
 		if (type == 'radio' || type == 'checkbox') {
 			return (
 				<CheckItem
 					id={this.props.id}
 					formSetting={this.props.formSetting}
-					saveFormData={this.props.saveFormData}
+					formDatas={this.props.formDatas}
+					ref={this.ref}
 				/>
 			);
 		} else if (type == 'select') {
@@ -21,7 +28,8 @@ class FormViewItem extends React.Component {
 				<SelectItem
 					id={this.props.id}
 					formSetting={this.props.formSetting}
-					saveFormData={this.props.saveFormData}
+					formDatas={this.props.formDatas}
+					ref={this.ref}
 				/>
 			);
 		} else if (type == 'textarea') {
@@ -29,7 +37,8 @@ class FormViewItem extends React.Component {
 				<TextareaItem
 					id={this.props.id}
 					formSetting={this.props.formSetting}
-					saveFormData={this.props.saveFormData}
+					formDatas={this.props.formDatas}
+					ref={this.ref}
 				/>
 			);
 		} else {
@@ -37,7 +46,8 @@ class FormViewItem extends React.Component {
 				<InputItem
 					id={this.props.id}
 					formSetting={this.props.formSetting}
-					saveFormData={this.props.saveFormData}
+					formDatas={this.props.formDatas}
+					ref={this.ref}
 				/>
 			);
 		}
@@ -49,7 +59,7 @@ class FormViewItem extends React.Component {
 
 FormViewItem.propTypes = {
 	formSetting: PropTypes.object,
-	saveFormData: PropTypes.func,
+	formDatas: PropTypes.object,
 	id: PropTypes.number
 };
 
