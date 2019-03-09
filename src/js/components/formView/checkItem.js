@@ -1,27 +1,41 @@
 import React from 'react';
+import $ from 'jquery';
 import PropTypes from 'prop-types';
 
 class CheckItem extends React.Component {
-	constructor() {
-		super();
+	option1Ref = React.createRef();
+	option2Ref = React.createRef();
+	option3Ref = React.createRef();
 
-		this.handleChange = this.handleChange.bind(this);
+	handleChange = () => {
+		let value = this.validation();
+		let name = this.props.formSetting.name;
+		this.props.formDatas[name] = value;
+	};
 
-		this.option1Ref = React.createRef();
-		this.option2Ref = React.createRef();
-		this.option3Ref = React.createRef();
-	}
-	handleChange(event) {
-		let id = this.props.id;
-		let name = event.target.name;
-		let op1 = this.option1Ref.current.checked;
-		let op2 = this.option2Ref.current.checked;
-		let op3 = this.option3Ref.current.checked;
+	validation() {
+		let op1Node = $(this.option1Ref.current);
+		let op2Node = $(this.option2Ref.current);
+		let op3Node = $(this.option3Ref.current);
+
+		let op1 = op1Node[0].checked;
+		let op2 = op2Node[0].checked;
+		let op3 = op3Node[0].checked;
 		let value = {};
 		if (op1) value['option1'] = op1;
 		if (op2) value['option2'] = op2;
 		if (op3) value['option3'] = op3;
-		this.props.saveFormData(value, name, id);
+
+		if (value && !value.option1 && !value.option2 && !value.option3) {
+			op1Node.addClass('is-invalid');
+			op2Node.addClass('is-invalid');
+			op3Node.addClass('is-invalid');
+		} else {
+			op1Node.removeClass('is-invalid');
+			op2Node.removeClass('is-invalid');
+			op3Node.removeClass('is-invalid');
+		}
+		return value;
 	}
 
 	render() {
@@ -38,6 +52,7 @@ class CheckItem extends React.Component {
 						name={this.props.formSetting.name}
 						ref={this.option1Ref}
 						onChange={this.handleChange}
+						required
 					/>
 					<label className="form-check-label">
 						{this.props.formSetting.option1}
@@ -50,6 +65,7 @@ class CheckItem extends React.Component {
 						name={this.props.formSetting.name}
 						ref={this.option2Ref}
 						onChange={this.handleChange}
+						required
 					/>
 					<label className="form-check-label">
 						{this.props.formSetting.option2}
@@ -62,6 +78,7 @@ class CheckItem extends React.Component {
 						name={this.props.formSetting.name}
 						ref={this.option3Ref}
 						onChange={this.handleChange}
+						required
 					/>
 					<label className="form-check-label">
 						{this.props.formSetting.option3}
@@ -75,6 +92,6 @@ export default CheckItem;
 
 CheckItem.propTypes = {
 	formSetting: PropTypes.object,
-	saveFormData: PropTypes.func,
+	formDatas: PropTypes.object,
 	id: PropTypes.number
 };
