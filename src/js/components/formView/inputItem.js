@@ -11,7 +11,8 @@ class InputItem extends React.Component {
 		let res = this.props.formSetting.regExp;
 
 		var match = res ? res.match(new RegExp('^/(.*?)/([gimy]*)$')) : false;
-		var regExp = match ? new RegExp(match[1], match[2]) : '';
+		var regExp =
+			match && match[1] && match[2] ? new RegExp(match[1], match[2]) : '';
 
 		if (regExp && !regExp.test(value)) {
 			node.addClass('is-invalid');
